@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once(__DIR__ . '/config.php');
 require_once(__DIR__ . '/functions.php');
 require_once(__DIR__ . '/Todo.php');
@@ -22,16 +24,19 @@ $todos = $todoApp->getAll(); // Todoを全件取得
     <form action="">
       <input type="text" id="new_todo" placeholder="What needs to be done?">
     </form>
-    <ul>
-      <!-- 全件取得したTodoを1件ずつ表示。stateが1の場合はcheck,doneクラスを与えてCSSを適用 -->
+    <ul id="todos">
+      <!-- 全件取得したTodoを1件ずつ表示。stateが1の場合はCSSを適用 -->
       <?php foreach ($todos as $todo) : ?>
-      <li>
-        <input type="checkbox" <?php if ($todo->state === '1') { echo 'checked'; } ?>>
-        <span class="<?php if ($todo->state === '1') { echo 'done'; } ?>"><?= h($todo->title); ?></span>
+      <li id="todo_<?= h($todo->id); ?>" data-id="<?= h($todo->id); ?>">
+        <input type="checkbox" class="update_todo" <?php if ($todo->state === '1') { echo 'checked'; } ?>>
+        <span class="todo_title <?php if ($todo->state === '1') { echo 'done'; } ?>"><?= h($todo->title); ?></span>
         <div class="delete_todo">x</div>
       </li>
       <?php endforeach ?>
     </ul>
   </div>
+  <input type="hidden" id="token" value="<?= h($_SESSION['token']); ?>">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="todo.js"></script>
 </body>
 </html>
