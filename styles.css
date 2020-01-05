@@ -1,0 +1,45 @@
+/* ページ全体 */
+body {
+  font-family: Arial, sans-serif;
+}
+
+#container {
+  width: 500px;
+  margin: 50px auto;
+}
+
+h1 {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul > li {
+  padding-bottom: 6px;
+}
+
+/* todoのform, 打ち消し線 */
+#new_todo {
+  padding: 8px;
+  border-radius: 3px;
+  width: 490px;
+  margin: 0 auto 15px;
+  font-size: 16px;
+}
+
+.delete_todo {
+  display: inline-block;
+  float: right;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.done {
+  text-decoration: line-through;
+}
